@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <p>{{ 1 }}</p>
+    <p>{{ id }}</p>
     <p>{{ content }}</p>
     <p>{{ date }}</p>
   </div>
@@ -19,6 +19,10 @@ export default defineComponent({
     date: {
       type: String,
       default: '00/00',
+    },
+    id: {
+      type: Number,
+      required: true,
     },
   },
 });

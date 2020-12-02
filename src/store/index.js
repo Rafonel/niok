@@ -33,5 +33,8 @@ export default createStore({
     lengthUnactiveCards: (state, getters) => (
       state.allCards.length - getters.activeCards.length
     ),
+    idCard: (state) => (id) => (
+      state.allCards.filter((card) => card.id === id)
+    ),
   },
 });

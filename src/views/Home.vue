@@ -1,14 +1,18 @@
 <template>
   <h1>Cards</h1>
-  <button @click="justActiveCards = false">Pick all cards</button>
-  <button @click="justActiveCards = true">Pick active cards</button>
+  <button @click="handlePickAllCards">Pick all cards</button>
+  <button @click="handlePickActiveCards">Pick active cards</button>
   <br/>
+  <input type="number" v-model="search">
+  <button @click="handleSearchCard">Search by ID</button>
   <p> Disabled cards: {{ lengthUnactiveCards }} </p>
+  <br/>
   <Card
     v-for="item in cards"
     :key="item.id"
     :content="item.content"
     :date="item.date"
+    :id="item.id"
   />
 </template>
 
@@ -16,6 +20,8 @@
 import { defineComponent } from 'vue';
 import { mapState, mapActions, mapGetters } from 'vuex';
 import Card from '../components/Card.vue';
+// eslint-disable-next-line no-unused-vars
+import { TypeCard } from '../types';
 
 export default defineComponent({
   name: 'Home',
@@ -24,26 +30,45 @@ export default defineComponent({
   },
   data() {
     return {
-      justActiveCards: false,
+      actualCards: [] as [],
+      search: '',
     };
   },
 
   computed: {
     ...mapState(['allCards']),
-    ...mapGetters(['activeCards', 'lengthUnactiveCards']),
-    cards() {
-      if (this.justActiveCards) {
-        return this.activeCards;
-      }
-      return this.allCards;
+    ...mapGetters(['activeCards', 'lengthUnactiveCards', 'idCard']),
+    cards: {
+      get(): Array<TypeCard> {
+        return this.actualCards;
+      },
+      set(value: string): void {
+        if (value === 'all') {
+          this.actualCards = this.allCards;
+        } else if (value === 'active') {
+          this.actualCards = this.activeCards;
+        } else {
+          this.actualCards = this.idCard;
+        }
+      },
     },
   },
   methods: {
-    ...mapActions({ handlePickAllCards: 'getCards' }),
+    ...mapActions(['getCards', 'idCard']),
+    handlePickAllCards() {
+      this.cards = this.allCards;
+    },
+    handlePickActiveCards() {
+      this.cards = this.activeCards;
+    },
+    handleSearchCard() {
+      this.cards = this.idCard(this.search);
+    },
   },
 
   mounted() {
-    this.handlePickAllCards();
+    this.getCards();
+    this.cards = this.allCards;
   },
 });
 </script>
