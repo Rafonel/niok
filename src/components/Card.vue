@@ -1,8 +1,8 @@
 <template>
   <div class="card">
-    <p>{{ card.id }}</p>
-    <p>{{ card.content }}</p>
-    <p>{{ card.date }}</p>
+    <p>{{ 1 }}</p>
+    <p>{{ content }}</p>
+    <p>{{ date }}</p>
   </div>
 </template>
 
@@ -10,14 +10,14 @@
 export default {
   name: 'Card',
   props: {
-    card: {
-      type: Object,
-      required: true,
+    content: {
+      type: String,
+      default: '',
+    },
+    date: {
+      type: String,
+      default: '00/00',
     },
   },
 };
 </script>
-
-<style>
-
-</style>
