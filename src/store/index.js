@@ -30,5 +30,8 @@ export default createStore({
     activeCards: (state) => (
       state.allCards.filter((card) => card.active)
     ),
+    lengthUnactiveCards: (state, getters) => (
+      state.allCards.length - getters.activeCards.length
+    ),
   },
 });

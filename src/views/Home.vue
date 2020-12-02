@@ -3,6 +3,7 @@
   <button @click="justActiveCards = false">Pick all cards</button>
   <button @click="justActiveCards = true">Pick active cards</button>
   <br/>
+  <p> Disabled cards: {{ lengthUnactiveCards }} </p>
   <Card
     v-for="item in cards"
     :key="item.id"
@@ -29,7 +30,7 @@ export default defineComponent({
 
   computed: {
     ...mapState(['allCards']),
-    ...mapGetters(['activeCards']),
+    ...mapGetters(['activeCards', 'lengthUnactiveCards']),
     cards() {
       if (this.justActiveCards) {
         return this.activeCards;
