@@ -2,21 +2,25 @@
   "cards": [
     {
       "id": 0,
+      "active": true,
       "content": "content card 1",
       "date": "22/01"
     },
     {
       "id": 1,
+      "active": true,
       "content": "content card 2",
       "date": "22/02"
     },
     {
       "id": 2,
+      "active": false,
       "content": "content card 3",
       "date": "22/03"
     },
     {
       "id": 3,
+      "active": false,
       "content": "content card 4",
       "date": "22/04"
     }

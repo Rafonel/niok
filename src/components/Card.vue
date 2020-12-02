@@ -7,7 +7,9 @@
 </template>
 
 <script>
-export default {
+import { defineComponent } from 'vue';
+
+export default defineComponent({
   name: 'Card',
   props: {
     content: {
@@ -19,5 +21,5 @@ export default {
       default: '00/00',
     },
   },
-};
+});
 </script>
