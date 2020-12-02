@@ -8,7 +8,7 @@
   <p> Disabled cards: {{ lengthUnactiveCards }} </p>
   <br/>
   <Card
-    v-for="item in cards"
+    v-for="item in actualCards"
     :key="item.id"
     :content="item.content"
     :date="item.date"
@@ -30,8 +30,8 @@ export default defineComponent({
   },
   data() {
     return {
-      actualCards: [] as [],
-      search: '',
+      actualCards: [] as Array<TypeCard>,
+      search: 0 as number,
     };
   },
 
@@ -54,7 +54,7 @@ export default defineComponent({
     },
   },
   methods: {
-    ...mapActions(['getCards', 'idCard']),
+    ...mapActions(['getCards']),
     handlePickAllCards() {
       this.cards = this.allCards;
     },
