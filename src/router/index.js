@@ -12,6 +12,11 @@ const routes = [
     component: () => import('@/views/CreatePage.vue'),
   },
   {
+    path: '/multiroot',
+    name: 'Multiroot',
+    component: () => import('@/views/Multiroot.vue'),
+  },
+  {
     path: '/*',
     name: 'Error404',
     component: () => import('@/views/Error404.vue'),

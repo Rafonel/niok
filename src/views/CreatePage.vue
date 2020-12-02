@@ -1,8 +1,8 @@
 <template>
   <h1>Create a card</h1>
   <Create
-    v-model:content="form.content"
-    v-model:date="form.date"
+    v-model:content.capitalize="form.content"
+    v-model:date.dateFormat="form.date"
   />
   <h3>Preview: </h3>
   <Card
